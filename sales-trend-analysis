@@ -1,0 +1,42 @@
+CREATE schema sales_data;
+USE sales_data;
+-- Create the table
+CREATE TABLE online_sales (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    amount DECIMAL(10, 2),
+    product_id INT
+);
+-- Insert the sample data
+INSERT INTO online_sales (order_id, order_date, amount, product_id) VALUES
+(1, '2023-01-10', 55.50, 101),
+(2, '2023-01-15', 120.00, 102),
+(3, '2023-01-22', 75.25, 103),
+(4, '2023-02-05', 200.00, 101),
+(5, '2023-02-18', 88.75, 104),
+(6, '2023-03-01', 350.00, 105),
+(7, '2023-03-12', 45.00, 103),
+(8, '2023-03-25', 150.00, 102),
+(9, '2023-04-03', 95.00, 104);
+SELECT * FROM online_sales;
+SELECT extract(month from order_date)as month from online_sales;
+SELECT EXTRACT(month from order_date)as month,sum(amount)as total_revenue from online_sales group by month;
+SELECT EXTRACT(month from order_date)as month,sum(amount)as total_revenue,count(distinct order_id)as total_orders from online_sales group by month;
+SELECT
+    EXTRACT(MONTH FROM order_date) AS month,
+    SUM(amount) AS total_revenue,
+    COUNT(DISTINCT order_id) AS total_orders
+FROM
+    online_sales
+GROUP BY
+    month;
+SELECT
+    EXTRACT(MONTH FROM order_date) AS month,
+    SUM(amount) AS total_revenue,
+    COUNT(DISTINCT order_id) AS total_orders
+FROM
+    online_sales
+GROUP BY
+    month
+ORDER BY
+    month;
