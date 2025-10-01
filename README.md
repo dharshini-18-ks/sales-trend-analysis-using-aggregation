@@ -2,6 +2,7 @@
 Task 6: Sales Trend using Aggregation
 
 The analysis is performed using a single SQL query that leverages the following concepts:
+
 1. ​EXTRACT(MONTH FROM order_date): To isolate the month from the full date.
 ​
 2. SUM(amount): An aggregate function to calculate total revenue.
